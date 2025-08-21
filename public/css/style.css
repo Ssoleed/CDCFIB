@@ -1,0 +1,323 @@
+/* ===============================
+   Zaria Membership Portal — CSS
+   Neat federal look, responsive,
+   countdown + print styles included
+   =============================== */
+
+/* ---------- Theme ---------- */
+:root {
+  --brand: #0a3a7d;   /* deep federal blue */
+  --brand-2: #0f5fb0; /* accent blue */
+  --ink: #0b1320;     /* heading/text */
+  --text: #1f2937;    /* body text */
+  --bg: #f6f8fb;      /* app background */
+  --card: #ffffff;    /* card background */
+  --muted: #6b7280;   /* muted text */
+  --line: #e5e7eb;    /* borders */
+  --ok: #0a7a2f;      /* success */
+  --bad: #b00020;     /* error */
+  --shadow: 0 8px 24px rgba(2, 22, 58, 0.06);
+  --radius: 14px;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; display: block; }
+
+.container { 
+  width: 92%; 
+  max-width: 1100px; 
+  margin: 0 auto; 
+  padding: 0 10px; /* mobile padding added */
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: linear-gradient(90deg, var(--brand) 0%, var(--brand-2) 100%);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 6px 16px rgba(2, 22, 58, 0.12);
+}
+.nav-content {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  padding: 14px 0;
+  flex-wrap: wrap; /* allow wrapping for mobile */
+}
+.logo { font-weight: 800; letter-spacing: .2px; }
+.navbar a {
+  color: #fff; text-decoration: none; margin-left: 18px; opacity: .95;
+  font-size: clamp(0.9rem, 2vw, 1.1rem); /* responsive font */
+}
+.navbar a:hover, .navbar a:focus-visible { text-decoration: underline; }
+.navbar a.active { text-decoration: underline; font-weight: 600; }
+
+/* ---------- Hero ---------- */
+.hero { padding: clamp(30px, 8vw, 64px) 0 30px; text-align: center; } /* responsive padding */
+h1 {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: clamp(1.6rem, 1.1rem + 5vw, 2.2rem); /* responsive font */
+}
+p { margin: 0.35rem 0; color: var(--text); }
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-top: 16px;
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Grid ---------- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 14px;
+}
+@media (max-width: 720px) {
+  .grid-2 { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* ---------- Forms ---------- */
+label {
+  display: block;
+  font-size: .95rem;
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+input, select, textarea, button {
+  width: 100%;
+  padding: 12px; /* increased padding for mobile */
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  font-size: 16px; /* mobile-friendly font */
+}
+input::placeholder, textarea::placeholder { color: #9aa3af; }
+textarea { min-height: 100px; resize: vertical; }
+input:focus, select:focus, textarea:focus, button:focus {
+  outline: 3px solid rgba(15, 95, 176, .18);
+  border-color: var(--brand-2);
+}
+/* File input improvement (subtle) */
+input[type="file"] {
+  padding: 9px 10px;
+  background: #fafafa;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  background: #eef2f7;
+  color: var(--ink);
+  border: 1px solid #d6dee8;
+  border-radius: 12px;
+  padding: 12px 16px; /* increased padding */
+  cursor: pointer;
+  transition: transform .04s ease, box-shadow .2s ease, background .2s ease;
+  display: inline-block;
+  font-size: 16px;
+}
+.btn:hover { background: #e7eef6; box-shadow: 0 6px 16px rgba(2, 22, 58, 0.08); transform: none; }
+.btn:active { transform: translateY(1px); }
+.btn.primary {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+  
+}
+.btn.primary:hover {
+  background: #0c4b97;
+  box-shadow: 0 8px 18px rgba(15, 95, 176, 0.28);
+}
+.btn.danger {
+  background: #fff0f2;
+  color: var(--bad);
+  border-color: #ffd9de;
+}
+
+/* ---------- Utilities ---------- */
+.flex { display: flex; }
+.gap { gap: 10px; }
+.center { text-align: center; }
+.msg { margin-top: 10px; }
+.msg.ok { color: var(--ok); }
+.msg.err { color: var(--bad); }
+
+/* ---------- Tables ---------- */
+.table-wrap { overflow-x: auto; margin-top: 12px; }
+#memberTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  font-size: 0.95rem;
+}
+#memberTable th, #memberTable td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  white-space: nowrap;
+}
+#memberTable thead th {
+  background: #f2f6fb;
+  color: var(--ink);
+  position: sticky; top: 0; z-index: 1;
+}
+#memberTable tbody tr:nth-child(odd) { background: #fcfdff; }
+#memberTable tbody tr:hover { background: #f6f9ff; }
+
+/* ---------- Member Card ---------- */
+.member-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  max-width: 720px;
+  margin: 10px 0;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  flex-direction: column; /* stacked on mobile */
+}
+.member-card-header {
+  background: linear-gradient(90deg, var(--brand) 0%, var(--brand-2) 100%);
+  color: #fff;
+  padding: 12px 16px;
+  font-weight: 800;
+  letter-spacing: .3px;
+}
+.member-card-body {
+  display: flex; 
+  gap: 16px; 
+  padding: 16px;
+  align-items: flex-start; /* for stacked mobile */
+  flex-direction: column;
+}
+.member-photo {
+  width: 100%; max-width: 120px; height: auto; /* responsive */
+  background: #e5e7eb;
+  border-radius: 12px;
+  background-size: cover; background-position: center;
+  border: 1px solid #dbe1ea;
+}
+.member-info p { margin: 6px 0; color: var(--ink); }
+
+/* Highlight CDCFIB only on card */
+.member-info p strong { color: var(--muted); }
+.member-info #cardCdcfib {
+  font-weight: 800; letter-spacing: .3px;
+  padding: 2px 6px; border-radius: 6px;
+  background: #eef6ff; color: #0e4f9a; border: 1px solid #d7e8ff;
+}
+
+/* Countdown container */
+.countdown {
+  position: fixed;       /* Makes it stick to the top */
+  top: 0;                /* Aligns it to the top */
+  left: 0;
+  width: 100%;           /* Full width */
+  background-color: #2c3e50; /* Professional color, change if needed */
+  color: #fff;           /* Text color */
+  text-align: center;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 1000;         /* Makes sure it stays above other elements */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Slight shadow for depth */
+}
+
+.countdown .timer {
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px;
+  padding: 6px; 
+  border-radius: 10px;
+  background: #f1f6fd; 
+  border: 1px solid #dbe7fb;
+  box-shadow: inset 0 1px 0 #fff;
+  flex-wrap: wrap; /* responsive for mobile */
+  justify-content: center;
+}
+.countdown .timer span {
+  background: #fff;
+  padding: 4px 8px; /* smaller padding for mobile */
+  border-radius: 10px;
+  border: 1px solid #ccd7ea;
+  min-width: 40px; /* responsive */
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.countdown .closed {
+  color: var(--bad);
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  margin-top: 40px;
+  background: linear-gradient(90deg, var(--brand) 0%, var(--brand-2) 100%);
+  color: #fff; padding: 16px 0; text-align: center;
+  box-shadow: 0 -6px 16px rgba(2, 22, 58, 0.08);
+  font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+/* ---------- Print: Card only ---------- */
+@media print {
+  body { background: #fff; }
+  .navbar, .footer, #printBtn, .hero, .countdown { display: none !important; }
+  .member-card { border: 1px solid #000; box-shadow: none; }
+  .member-card-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .container { width: 100%; max-width: none; margin: 0; }
+  section.container { padding: 0; }
+}
+
+/* ---------- Accessibility ---------- */
+:focus-visible {
+  outline: 3px solid rgba(15, 95, 176, .28);
+  outline-offset: 2px;
+}
+a { color: var(--brand-2); }
+a:hover { text-decoration: underline; }
+
+/* ---------- Small Enhancements ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eef2f7;
+  border: 1px solid #d6dee8;
+  font-size: .8rem;
+}
+hr {
+  border: none; border-top: 1px solid var(--line);
+  margin: 16px 0;
+}
+
+/* ---------- Responsive Media Queries ---------- */
+@media (max-width: 600px) {
+  .container { padding: 0 10px; }
+  h1 { font-size: 1.5rem; }
+  input, select, textarea, button { font-size: 15px; padding: 10px; }
+  .member-card-body { gap: 10px; }
+  .grid-2 { gap: 10px; }
+}

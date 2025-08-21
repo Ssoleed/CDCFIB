@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaria Indigenes Membership Portal</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Fixed countdown at top */
+    .countdown {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #2c3e50; /* Professional dark blue */
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Add spacing below countdown so it doesn't overlap content */
+    body {
+      padding-top: 60px; /* adjust according to countdown height */
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Countdown ===== -->
+  <div class="countdown" id="countdown">
+    ⏳ Registration closes in: <span id="time">Loading...</span>
+  </div>
+
+  <!-- ===== Navbar ===== -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <div class="logo"><h3>Organization of Zaria Indigenes</h3></div>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="register.html">Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero container">
+    <h1>Welcome to the Zaria Membership Portal</h1>
+    <p>
+      This portal is officially endorsed by the <strong>Honorable Speaker of the House of Representatives</strong>.  
+      It provides a limited number of slots for eligible applicants at the <strong>CDCFIB</strong>.  
+    </p>
+    <p>
+      Only registered members can secure a slot. Please register below and complete the membership registration to be considered.
+    </p>
+
+    <div class="flex gap center" style="flex-wrap: wrap; margin-top: 20px;">
+      <a href="register.html" class="btn primary">Register Now</a>
+    </div>
+  </section>
+
+  <!-- ===== Why Join Section ===== -->
+  <section class="container" style="padding:3rem 0;">
+    <h2>Why You Should Register</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>✅ Priority Access</h3>
+        <p>
+          Gain recognition and priority consideration in federal recruitment
+          exercises like <strong>CDCFIB</strong> and other opportunities.
+        </p>
+      </div>
+      <div class="card">
+        <h3>🎓 Student & Graduate Support</h3>
+        <p>
+          Registered members enjoy support in <strong>scholarships, graduate
+          training, and employment facilitation</strong>.
+        </p>
+      </div>
+      <div class="card">
+        <h3>🪪 Official Membership Card</h3>
+        <p>
+          Each successful registration generates a secure
+          <strong>digital membership card</strong> you can print or use for
+          verification.
+        </p>
+      </div>
+      <div class="card">
+        <h3>🤝 Community Representation</h3>
+        <p>
+          Be counted among Zaria indigenes who stand together for
+          <strong>federal recognition, fairness, and equal access</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA Section ===== -->
+  <section class="container center" style="padding:2rem 0;">
+    <h2>⏳ Limited-Time Registration</h2>
+    <p>
+      Registration closes in just a few days. Don’t miss this golden opportunity to
+      be officially recognized. <br />
+      Click below to secure your slot now.
+    </p>
+    <a href="register.html" class="btn primary" style="margin-top:20px;">Proceed to Registration</a>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">&copy; 2025 Organization of Zaria Indigenes. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    const countdownEl = document.getElementById('time');
+
+    const updateCountdown = async () => {
+      try {
+        const response = await fetch("/countdown");
+        const data = await response.json();
+        let distance = data.distance;
+
+        if(distance <= 0){
+          countdownEl.innerHTML = "Registration Closed!";
+          clearInterval(interval);
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000*60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      } catch(err) {
+        console.error("Error fetching countdown:", err);
+        countdownEl.innerHTML = "Error loading countdown";
+      }
+    };
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>

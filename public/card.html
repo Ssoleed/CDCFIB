@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment | Zaria Membership Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-content container">
+      <div class="logo">ZariaHub</div>
+      <div>
+        <a href="register.html">Register</a>
+        <a href="card.html" class="active">Payment</a>
+        <a href="members.html">Members</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Payment Section -->
+  <section class="hero container">
+    <h1>Payment</h1>
+    <p>Complete your payment to activate your membership.</p>
+
+    <div class="member-card">
+      <div class="member-card-header">Member Details</div>
+      <div class="member-card-body">
+        <div class="member-photo" id="memberPhoto"></div>
+        <div class="member-info">
+          <p id="memberName"></p>
+          <p id="memberEmail"></p>
+          <p id="memberPhone"></p>
+        </div>
+      </div>
+      <button id="payBtn" class="btn primary">Pay Now</button>
+    </div>
+  </section>
+
+  <!-- Flutterwave script -->
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
+  <script src="js/card.js"></script>
+</body>
+</html>
