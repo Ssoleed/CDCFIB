@@ -6,9 +6,8 @@ const app = express();
 // Use Render's PORT (important for deployment)
 const PORT = process.env.PORT || 5000;
 
-// Serve static files (html, css, js)
-app.use(express.static(path.join(__dirname, "css")));
-app.use(express.static(path.join(__dirname, "js")));
+// Serve all static files (html, css, js, images, etc.) from "public"
+app.use(express.static(path.join(__dirname, "public")));
 
 // Middleware to handle JSON requests
 app.use(express.json());
@@ -25,7 +24,7 @@ app.get("/countdown", (req, res) => {
 
 // Serve index.html when visiting "/"
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // Start server
