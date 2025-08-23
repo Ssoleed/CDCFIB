@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f6f8; font-family: Arial, sans-serif; text-align: center; }
+    .success-box { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    h1 { color: green; margin-bottom: 10px; }
+    p { font-size: 16px; margin: 10px 0; }
+    .loading { margin-top: 20px; font-size: 14px; color: #555; }
+  </style>
+</head>
+<body>
+  <div class="success-box">
+    <h1>✅ Payment Successful</h1>
+    <p>Thank you! Your payment has been confirmed.</p>
+    <p>Redirecting to your Membership Card...</p>
+    <div class="loading">⏳ Please wait...</div>
+  </div>
+
+  <script>
+    const SESSION_KEY = "current_member_id";
+    const memberId = sessionStorage.getItem(SESSION_KEY);
+
+    if (memberId) {
+      let members = JSON.parse(localStorage.getItem("members")) || [];
+      const idx = members.findIndex(m => m.id === memberId);
+      if (idx !== -1) {
+        members[idx].status = "paid";
+        localStorage.setItem("members", JSON.stringify(members));
+      }
+    }
+
+    setTimeout(() => {
+      window.location.href = "card.html";
+    }, 3000);
+  </script>
+</body>
+</html>

@@ -1,26 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payment – Zaria Membership</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make Payment</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f9f9f9;
+    }
+    .pay-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    p {
+      color: #555;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #219150;
+    }
+  </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="container nav-content"><div class="logo">Organization of Zaria Indigenes</div></div>
-  </header>
+  <div class="pay-box">
+    <h1>💳 Complete Your Payment</h1>
+    <p>Membership Fee: ₦1,000</p>
+    <button id="payBtn" class="btn">Pay Now</button>
+  </div>
 
-  <section class="container">
-    <h1>Membership Payment</h1>
-    <p>Please make a payment of <strong>₦1000</strong> to complete registration.</p>
-    <button id="payBtn" class="btn primary">Pay ₦1000</button>
-    <div id="paymentMsg" class="msg" style="display:none"></div>
-  </section>
-
-  <footer class="footer"><div class="container">&copy; 2025 Zaria Indigenes</div></footer>
-
-  <script src="js/common.js"></script>
-  <script src="js/payment.js"></script>
+  <script>
+    document.getElementById("payBtn").addEventListener("click", () => {
+      // Redirect to Selar checkout (replace with your actual link)
+      window.location.href = "https://selar.co/1ew6qi0736"; 
+      // After successful payment, Selar should redirect to payment-success.html
+    });
+  </script>
 </body>
 </html>

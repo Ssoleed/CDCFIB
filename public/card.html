@@ -3,43 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment | Zaria Membership Portal</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Membership Card</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .card { width: 350px; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); text-align: center; }
+    .card h2 { margin-bottom: 15px; color: #333; }
+    .passport { width: 100px; height: 100px; border-radius: 8px; object-fit: cover; border: 2px solid #444; margin-bottom: 15px; }
+    .details p { margin: 6px 0; font-size: 15px; color: #444; }
+    .btn { margin-top: 15px; padding: 10px 20px; background: #27ae60; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+    .btn:hover { background: #219150; }
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-content container">
-      <div class="logo">ZariaHub</div>
-      <div>
-        <a href="register.html">Register</a>
-        <a href="card.html" class="active">Payment</a>
-        <a href="members.html">Members</a>
-      </div>
+  <div class="card">
+    <h2>Membership Card</h2>
+    <img id="passport" class="passport" src="" alt="Passport">
+    <div class="details">
+      <p><strong>ID:</strong> <span id="memberId"></span></p>
+      <p><strong>Name:</strong> <span id="memberName"></span></p>
+      <p><strong>Email:</strong> <span id="memberEmail"></span></p>
+      <p><strong>Status:</strong> <span id="memberStatus"></span></p>
     </div>
-  </nav>
+    <button id="downloadBtn" class="btn">Download Card</button>
+  </div>
 
-  <!-- Payment Section -->
-  <section class="hero container">
-    <h1>Payment</h1>
-    <p>Complete your payment to activate your membership.</p>
-
-    <div class="member-card">
-      <div class="member-card-header">Member Details</div>
-      <div class="member-card-body">
-        <div class="member-photo" id="memberPhoto"></div>
-        <div class="member-info">
-          <p id="memberName"></p>
-          <p id="memberEmail"></p>
-          <p id="memberPhone"></p>
-        </div>
-      </div>
-      <button id="payBtn" class="btn primary">Pay Now</button>
-    </div>
-  </section>
-
-  <!-- Flutterwave script -->
-  <script src="https://checkout.flutterwave.com/v3.js"></script>
   <script src="js/card.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </body>
 </html>

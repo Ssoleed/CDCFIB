@@ -24,7 +24,8 @@
 
     /* Add spacing below countdown so it doesn't overlap content */
     body {
-      padding-top: 60px; /* adjust according to countdown height */
+      padding-top: 60px;
+      font-family: Arial, sans-serif;
     }
   </style>
 </head>
@@ -34,6 +35,7 @@
     ⏳ Registration closes in: <span id="time">Loading...</span>
   </div>
 
+  <!-- ===== Navbar ===== -->
   <header class="navbar">
     <div class="container nav-content">
       <div class="logo"><h3>Zaria Indigenes Organization (CDCFIB)</h3></div>
@@ -44,6 +46,7 @@
     </div>
   </header>
 
+  <!-- ===== Registration Form ===== -->
   <section class="container">
     <h1>Member Registration</h1>
 
@@ -74,45 +77,19 @@
         </div>
         <div><label>CDCFIB ID</label><input type="text" id="cdcfibId" placeholder="Enter your CDCFIB ID" required /></div>
         <div><label>Password</label><input type="password" id="password" minlength="4" required /></div>
-        <div><label>Passport</label><input type="file" id="passport" accept="image/*" /></div>
+        <div><label>Passport</label><input type="file" id="passport" accept="image/*" required /></div>
       </div>
       <button class="btn primary" type="submit">Register & Proceed to Payment</button>
     </form>
   </section>
 
-  <footer class="footer"><div class="container">&copy; 2025 Zaria Indigenes</div></footer>
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">&copy; 2025 Zaria Indigenes</div>
+  </footer>
 
-  <script>
-    const countdownEl = document.getElementById('time');
-    const registerForm = document.getElementById('registerForm');
-
-    const updateCountdown = async () => {
-      try {
-        const response = await fetch("/countdown");
-        const data = await response.json();
-        let distance = data.distance;
-
-        if(distance <= 0){
-          countdownEl.innerHTML = "Registration Closed!";
-          registerForm.style.display = "none"; // hide form
-          clearInterval(interval);
-          return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000*60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      } catch(err) {
-        console.error("Error fetching countdown:", err);
-        countdownEl.innerHTML = "Error loading countdown";
-      }
-    };
-
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
+  <!-- ===== Scripts ===== -->
+  <script src="js/common.js"></script>
+  <script src="js/register.js"></script>
 </body>
 </html>
